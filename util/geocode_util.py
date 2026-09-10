@@ -12,6 +12,7 @@ def get_code(address):
     }
     rs = requests.get(url=url,params=params)
     data = rs.json()
+    print('11111111111',data)
     location = data["geocodes"][0]["location"]
     print(location)
     return location

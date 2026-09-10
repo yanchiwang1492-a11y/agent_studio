@@ -35,6 +35,7 @@ def create_email_agent(q,user_id):
     # return rs
     return '12333'+rs["messages"][-1].content
 
+
 if __name__ =="__main__":
 
     #定义问题列表

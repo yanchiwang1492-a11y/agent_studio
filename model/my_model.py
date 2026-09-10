@@ -21,6 +21,9 @@ class MyModel:
                 model=os.getenv("MODEL_LINE_NAME"),
                 api_key=os.getenv("DASHSCOPE_API_KEY"),
                 streaming=True,#开启流式输出
+                extra_body={
+                    "enable_thinking": False
+                }
             )
         return MyModel._model
     #本地模型创建

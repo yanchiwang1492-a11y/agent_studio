@@ -15,7 +15,7 @@ async def main():
     # 创建三个任务，同时出发
     tasks = [
         asyncio.create_task(task("A", 4)),
-        asyncio.create_task(task("B", 1)),
+        asyncio.create_task(task("B", 0.0000000000000000000000000000000000000000001)),
         asyncio.create_task(task("C", 3))
     ]
 

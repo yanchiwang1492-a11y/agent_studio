@@ -6,7 +6,7 @@ import asyncio #异步执行库
 #演示智能体创建
 async def create_email_agent(q):
     # 1 创建一个大模型
-    model = MyModel.get_local_model()
+    model = MyModel.get_model()
     #2 创建一个工具
     tools=[send_email_tool]
     #3 创建提示词,系统提示词
@@ -28,13 +28,13 @@ async def create_email_agent(q):
         #print(m)
         if c.content:
             yield c.content
-            # print(c.content, end="~")  # ← 直接在函数内打印
+            print('1111111111111',c.content, end="~")
 
 
 async def main():
     q = "请给1260171885@qq.com 发送一封邮件，通知他来上课"
     async for chunk in create_email_agent(q):
-        print(chunk, end=",")  # 逐块打印，不换行
+        print('2222222222222222222222222',chunk, end=",")  # 逐块打印，不换行
 
 asyncio.run(main())
 

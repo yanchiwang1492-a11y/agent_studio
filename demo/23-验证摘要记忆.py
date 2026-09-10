@@ -46,10 +46,10 @@ def create_email_agent(q):
 
 if __name__ == "__main__":
     q1 = "我叫张三，今年23岁"
-    # q2 ="我喜欢打篮球"
-    # q3="我在学习langchain"
-    # q4="我在学习什么"
-    # q5="我是谁，今年多大了"
-    # for q in [q1, q2, q3, q4, q5]:
-    #     print("---------------------")
-    create_email_agent(q1)
+    q2 ="我喜欢打篮球"
+    q3="我在学习langchain"
+    q4="我在学习什么"
+    q5="我是谁，今年多大了"
+    for q in [q1, q2, q3, q4, q5]:
+        print("---------------------")
+        create_email_agent(q)

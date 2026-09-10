@@ -66,7 +66,7 @@ class SummaryAgent:
 
 
 if __name__ == "__main__":
-    summary_memory = SummaryMemory("001")
+    summary_memory = SummaryMemory("002")
     s = SummaryAgent(summary_memory)
     # 最近聊天记录
     record = [{'role': 'user', 'content': '你好，我叫张胜男'}, {'role': 'ai', 'content': '你好，张胜男'},
