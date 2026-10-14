@@ -7,8 +7,14 @@ import smtplib
 import pymysql
 from my_mcp.key_verifier import  KeyVerifier
 from fastmcp.server.dependencies import get_access_token
+
+from my_mcp.test import get_mac_address
+
 #创建应用程序
 app = FastMCP(auth=KeyVerifier())
+print(app)
+# verify_token 的返回值不只返回给 auth 框架，框架还会把它「存」到一个地方，get_access_token() 就是从那个地方取的。
+# 这个「地方」叫 ContextVar（上下文变量）
 
 load_dotenv()
 #定义mysql工具
@@ -21,14 +27,19 @@ def send_email(to:str,subject:str,content:str)->str:
     :param content:  邮件内容
     :return: 返回成功或者失败
     """
+
+    # @app.tool()这个装饰器，支持两种方式写描述：写在括号里：用description = "..."参数。
+    # 写在函数里：用文档字符串（docstring），就是函数下方三引号
+    # """..."""里的内容。
+
     token =get_access_token()
-    print(f"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa当前请求的访问令牌信息:{token}")
-    if token.client_id =="68-C6-AC-A2-D1-F0":
+    print(f"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa当前请求的访问令牌信息:{token}")
+    if token.client_id ==get_mac_address():
         if "write" in token.scopes:
             try:
                 # 读取配置文件信息
                 sender = os.getenv("EMAIL_SENDER")
-                host = os.getenv("EMAIL_HOSt")
+                host = os.getenv("EMAIL_HOST")
                 port = os.getenv("EMAIL_PORT")
                 password = os.getenv("EMAIL_PASSWORD")
                 # 判断配置是否读取成功
@@ -65,8 +76,15 @@ import os
 class MySQLSchema(BaseModel):
     sql:str = Field(description="sql语句")
 #定义mysql
-@app.tool(description="执行 sql 语句查询 数据库模型：user_info 用户信息表，字段：user_id 用户编号 user_name 用户名 email 邮箱 department 部门 num 限制数量规则:- 禁止生成DELETE,UPDATE,INSERT,DROP,CREATE,ALTER 语句")
+@app.tool(name='MysqlTool',description="执行 sql 语句查询 数据库模型：user_info 用户信息表，"
+                      "字段：user_id 用户编号 user_name 用户名 email 邮箱 department 部门 num "
+                      "限制数量规则:- 禁止生成DELETE,UPDATE,INSERT,DROP,CREATE,ALTER 语句")
 def mysql_tool(p:MySQLSchema)->str:
+    token = get_access_token()
+    if token.client_id != get_mac_address():
+        return "客户端无权限"
+    if "read" not in token.scopes:
+        return "访问数据库工具必须是read权限"
     con = None
     cursor = None
     try:
@@ -80,7 +98,8 @@ def mysql_tool(p:MySQLSchema)->str:
 
         #兜底操作
         sql = p.sql
-        if  "DELETE" in sql.upper() or "UPDATE" in sql.upper() or "INSERT" in sql.upper() or "DROP" in sql.upper() or "CREATE" in sql.upper() or "ALTER" in sql.upper():
+        if  ("DELETE" in sql.upper() or "UPDATE" in sql.upper() or "INSERT" in sql.upper()
+                or "DROP" in sql.upper() or "CREATE" in sql.upper() or "ALTER" in sql.upper()):
             return "禁止执行非法sql语句操作"
         con =pymysql.connect(
             host =host,

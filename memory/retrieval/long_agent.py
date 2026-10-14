@@ -58,5 +58,5 @@ if __name__ == "__main__":
     long_memory = LongMemory()
     agent = LongAgent(long_memory)
     q1 = "我喜欢打游戏"
-    q2 = "我擅长编程"
+    q2 = "我讨厌编程"
     agent.update(1, q2)

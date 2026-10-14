@@ -24,7 +24,7 @@ def word_filter_middleware(state:AgentState,time:Runtime):
 def word_ping_middleware(state:AgentState,time:Runtime):
     print("22222222222222222222222222222222222验证是否在模型调用之后执行")
     print('333333333333333333333333333333333333333333333333333333333',state)
-    print('bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb', time)
+    print('bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb', time)
     # 用户问题
     question = state["messages"][1].content
     # 查询数据库或者查询外部文件
@@ -32,10 +32,9 @@ def word_ping_middleware(state:AgentState,time:Runtime):
     for x in word_list:
         if x in question:
            #获取过滤后的内容
-           data = re.sub(x,"!!!!!!!!!!!!!!!!!!!",question)
+           data = re.sub(x,"嫖娼",question)
            return {
                 "messages":[ AIMessage(content=data)]
            }
 
-    print('bbbbbbbbbbbbbbbbbbbbbbbb',time)
     return {}

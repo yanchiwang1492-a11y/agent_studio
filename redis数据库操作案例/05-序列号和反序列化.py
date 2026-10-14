@@ -1,6 +1,6 @@
 import redis
 import json
-client = redis.StrictRedis(host="localhost", port=6379, db=0, password='root')
+client = redis.StrictRedis(host="localhost", port=6379, db=1, password='root')
 
 #序列化
 def test01():

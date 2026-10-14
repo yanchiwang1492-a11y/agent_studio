@@ -38,6 +38,7 @@ async def create_email_agent(q,user_id):
         human_msg = {"messages": [HumanMessage(content=q)]}
         config = {"configurable": {"thread_id": user_id}}
         async for event in agent.astream_events(human_msg,config, version="v2"):
+            print('11111111111',event)
 
             # 获取事件内容
             event_name = event["event"]
@@ -75,5 +76,7 @@ async def test(q,user_id):
 if __name__ =="__main__":
     if sys.platform == 'win32':
         asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
-    q="通知张三，明天上午来上课"
+    q="通知张三，明天上午来打dota，选火枪"
     asyncio.run(test(q,3))
+# user_id在这里被当作LangGraph的thread_id（线程ID）使用，
+# 其核心作用是标识一个独立的会话（Session），从而实现多用户之间的状态隔离和记忆持久化。

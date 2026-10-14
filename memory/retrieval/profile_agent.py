@@ -64,9 +64,9 @@ class ProfileAgent:
     def update(self,question):
         # 提问
         rs = self.agent.invoke({"messages": [HumanMessage(content=question)]})
-        print(rs)
+        print('11111',rs)
         data = rs["structured_response"].model_dump()
-        print(data)
+        print('22222',data)
         # 查询出是否有新的画像信息
         for key, value in data.items():
             if value:
@@ -78,6 +78,6 @@ if __name__ == "__main__":
     agent = ProfileAgent(profile_memory)
     q1 = "我喜欢打游戏"
     q2 = "太阳是圆的"
-    q3 = "我是李四"
+    q3 = "我是张三，我今年222岁，之前记录错了的"
     q4 = "我今年97岁"
-    agent.update(q2)
+    agent.update(q3)

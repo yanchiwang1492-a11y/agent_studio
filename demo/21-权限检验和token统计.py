@@ -26,10 +26,10 @@ def create_email_agent(q):
 
         config = {"configurable": {"thread_id": '2'}}
         rs = agent.invoke(human_msg,config)
-        print(rs["messages"][-1].content)
+        print('11111111111111111',rs["messages"][-1].content)
     except Exception as e:
         print(e)
 
 if __name__ =="__main__":
-        q="赌博是什么"
+        q="介绍美国"
         create_email_agent(q)

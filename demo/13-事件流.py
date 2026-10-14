@@ -22,6 +22,7 @@ async def create_email_agent(q):
         # yield "\n"
         # yield event
         #获取事件内容
+        # print('11111111111',event)
         event_name = event["event"]
         if event_name =="on_chain_start":
             yield f"\n邮件智能体开始运行\n"

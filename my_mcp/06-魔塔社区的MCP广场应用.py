@@ -11,9 +11,9 @@ async def test():
           #获取工具列表
           rs = await client.list_tools()
           print(rs)
-          # data = await  client.call_tool("web_fetch",{"url":"https://www.swpu.edu.cn/"})
-          # print(data)
-          # print(data.content[0].text)
+          data = await  client.call_tool("web_fetch",{"url":"https://www.swpu.edu.cn/"})
+          print(data)
+          print(data.content[0].text)
 
 
 if __name__ =="__main__":

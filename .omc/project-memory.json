@@ -1,0 +1,215 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1791797205203,
+  "projectRoot": "C:\\Users\\nalan\\Desktop\\Projects\\agent-08-31",
+  "techStack": {
+    "languages": [],
+    "frameworks": [],
+    "packageManager": null,
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": null,
+    "testCommand": null,
+    "lintCommand": null,
+    "devCommand": null,
+    "scripts": {}
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": null
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [],
+    "gitBranches": {
+      "defaultBranch": "master",
+      "branchingStrategy": null
+    }
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "chroma_db": {
+      "path": "chroma_db",
+      "purpose": null,
+      "fileCount": 1,
+      "lastAccessed": 1791797205185,
+      "keyFiles": [
+        "chroma.sqlite3"
+      ]
+    },
+    "demo": {
+      "path": "demo",
+      "purpose": null,
+      "fileCount": 34,
+      "lastAccessed": 1791797205185,
+      "keyFiles": [
+        "01-智能体创建.py",
+        "02-同步案例.py",
+        "03-异步案例.py",
+        "04-stream.py",
+        "04-stream_custom.py"
+      ]
+    },
+    "langGraph_demo": {
+      "path": "langGraph_demo",
+      "purpose": null,
+      "fileCount": 1,
+      "lastAccessed": 1791797205185,
+      "keyFiles": [
+        "__init__.py"
+      ]
+    },
+    "memory": {
+      "path": "memory",
+      "purpose": null,
+      "fileCount": 1,
+      "lastAccessed": 1791797205186,
+      "keyFiles": [
+        "__init__.py"
+      ]
+    },
+    "middleware": {
+      "path": "middleware",
+      "purpose": "Middleware",
+      "fileCount": 4,
+      "lastAccessed": 1791797205186,
+      "keyFiles": [
+        "model_limit_middleware.py",
+        "power_limit_middleware.py",
+        "word_filter_middleware.py",
+        "__init__.py"
+      ]
+    },
+    "model": {
+      "path": "model",
+      "purpose": null,
+      "fileCount": 2,
+      "lastAccessed": 1791797205186,
+      "keyFiles": [
+        "my_model.py",
+        "__init__.py"
+      ]
+    },
+    "my_mcp": {
+      "path": "my_mcp",
+      "purpose": null,
+      "fileCount": 13,
+      "lastAccessed": 1791797205186,
+      "keyFiles": [
+        "01-基于sse协议的MCP客户端.py",
+        "01-基于SSE协议的MCP服务端.py",
+        "02-基于stdio协议的MCP服务端.py",
+        "03-基于stdio协议的客户端.py",
+        "04-langchain1.x版本调用基于SSE协议.py"
+      ]
+    },
+    "prompt": {
+      "path": "prompt",
+      "purpose": null,
+      "fileCount": 3,
+      "lastAccessed": 1791797205187,
+      "keyFiles": [
+        "email.yaml",
+        "prompt_builder.py",
+        "__init__.py"
+      ]
+    },
+    "redis数据库操作案例": {
+      "path": "redis数据库操作案例",
+      "purpose": null,
+      "fileCount": 6,
+      "lastAccessed": 1791797205187,
+      "keyFiles": [
+        "01-数据库链接.py",
+        "02-字符粗.py",
+        "03-hash类型.py",
+        "04-列表.py",
+        "05-序列号和反序列化.py"
+      ]
+    },
+    "tool": {
+      "path": "tool",
+      "purpose": null,
+      "fileCount": 5,
+      "lastAccessed": 1791797205188,
+      "keyFiles": [
+        "add_tool.py",
+        "amap_driver_tool.py",
+        "mysql_tool.py",
+        "send_email_tool.py",
+        "__init__.py"
+      ]
+    },
+    "util": {
+      "path": "util",
+      "purpose": null,
+      "fileCount": 2,
+      "lastAccessed": 1791797205188,
+      "keyFiles": [
+        "geocode_util.py",
+        "__init__.py"
+      ]
+    }
+  },
+  "hotPaths": [
+    {
+      "path": "tool\\send_email_tool.py",
+      "accessCount": 3,
+      "lastAccessed": 1791797435621,
+      "type": "file"
+    },
+    {
+      "path": "my_mcp\\08-验证密钥是否生效.py",
+      "accessCount": 2,
+      "lastAccessed": 1791798110270,
+      "type": "file"
+    },
+    {
+      "path": "test_mysql_auth.py",
+      "accessCount": 2,
+      "lastAccessed": 1791798266456,
+      "type": "file"
+    },
+    {
+      "path": "demo\\12-记忆摘要.py",
+      "accessCount": 1,
+      "lastAccessed": 1790606494576,
+      "type": "file"
+    },
+    {
+      "path": "tool\\amap_driver_tool.py",
+      "accessCount": 1,
+      "lastAccessed": 1791696855644,
+      "type": "file"
+    },
+    {
+      "path": "demo\\09-RESTful API工具智能体验证.py",
+      "accessCount": 1,
+      "lastAccessed": 1791696860578,
+      "type": "file"
+    },
+    {
+      "path": "model",
+      "accessCount": 1,
+      "lastAccessed": 1791696886004,
+      "type": "directory"
+    },
+    {
+      "path": ".env",
+      "accessCount": 1,
+      "lastAccessed": 1791797354042,
+      "type": "file"
+    },
+    {
+      "path": "my_mcp\\key_verifier.py",
+      "accessCount": 1,
+      "lastAccessed": 1791798103710,
+      "type": "file"
+    }
+  ],
+  "userDirectives": []
+}

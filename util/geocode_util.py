@@ -11,10 +11,14 @@ def get_code(address):
         "address":address
     }
     rs = requests.get(url=url,params=params)
+    print(rs)
+    print(rs.text)
     data = rs.json()
-    print('11111111111',data)
+    # rs.json()  ≈  json.loads(rs.text)
+    # rs.json() 做的事就是"把 rs.text 这个字符串，用 json.loads 解析成 Python 字典"。
+    print(data)
     location = data["geocodes"][0]["location"]
     print(location)
     return location
 if __name__ =="__main__":
-    get_code("成都")
+    get_code("邛崃")

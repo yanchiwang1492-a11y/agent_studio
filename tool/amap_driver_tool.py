@@ -27,10 +27,18 @@ def driver_tool( start_location:str, end_location: str ) ->str:
            "origin":start,
            "destination":end
        }
-       rs = requests.get(url=url,params=params).json()
-
+       # rs = requests.get(url=url,params=params).json()
+       rs1 = requests.get(url=url, params=params)
+       # print('55555555555555555555555',rs)
+       print('55555555555555555555555',rs1)
+       return rs1
        data = rs["route"]["paths"]
-       return data
+       print(data)
+       # return data
+
+       # 加不加.json()，agent 都能查出路线，是因为两种返回方式里「路线数据都在」——一个是结构化的，一个是被字符串化的完整响应。
+       # 模型都看得懂，不影响它回答，但类型、token 消耗、代码可维护性完全不同。
+       # 生产环境里还是老老实实用 .json() 提取需要的字段再返回，这才是规范写法。
 
 
     except Exception as e:

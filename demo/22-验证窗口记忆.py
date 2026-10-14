@@ -30,11 +30,11 @@ def create_email_agent(q):
     )
 
     # 创建会话管理器
-    session_manager = SessionManager("001")
+    session_manager = SessionManager("001",'002')
     # 添加窗口记忆
     session_manager.save("user", q)
     # 构建记忆的提示词
-    memory_prompt = session_manager.build_prompt()
+    memory_prompt = session_manager.build_prompt('002',q)
     human_msg = {"messages": [HumanMessage(content=q), memory_prompt]}
     rs = agent.invoke(human_msg)
     # 添加AI回复的记忆

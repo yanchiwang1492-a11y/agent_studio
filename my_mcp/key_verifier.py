@@ -8,8 +8,8 @@ class KeyVerifier(TokenVerifier):
         if token =="123456":
             return AccessToken(
                       token =token,
-                      client_id="68-C6-AC-A2-D1-F0",#客户端唯一标识符
-                      scopes=["write"] #允许访问的权限信息
+                      client_id="c8:95:ce:6c:94:df",#客户端唯一标识符
+                      scopes=["write", "read"] #允许访问的权限信息
                      #scopes=[]
             )
         else:

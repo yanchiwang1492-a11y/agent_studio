@@ -26,18 +26,23 @@ def create_email_agent(q):
     # stream_mode="messages" 每次流式返回的数据包里，装的是什么格式的内容？
     # "values"	当前状态的全部值	每次返回整个 agent 状态（包含所有历史消息），数据量大
     for c,m in agent.stream(human_msg,stream_mode="messages"):
-
-        # print("1111111111111111",c)
-        # print('2222222222222222',m)
-        # print(c)
-
+        # print("111111111",c)
+        # print('222222222',m)
         if c.content:
-            print('333333333333333333333',c.content)
+            print(c.content,end='')
+            # yield(c.content)
 
-
-
+    # a=agent.stream(human_msg)
+    # for chunk in agent.stream(human_msg):
+    # # stream_mode 默认是 "values"，不是真正的流式
+    # # 它会等整个节点的状态更新完成后才 yield 一次
+    # print(chunk)
+    # print(a)
 
 if __name__ =="__main__":
     q="请给1260171885@qq.com 发送一封邮件，通知他来上课"
+    q="1句话介绍伊拉克"
     create_email_agent(q)
+    # for a in create_email_agent(q):
+    #     print(a,end='')
 

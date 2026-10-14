@@ -20,9 +20,11 @@ def create_email_agent(q):
         # 定义人工审核中间件
         hum_middleware = HumanInTheLoopMiddleware(
              interrupt_on={ #拦截点，拦截哪些工具
-                  "send_email_tool":{
+                  "邮件发送工具123":{
                       "allowed_decisions": ["approve", "reject", "edit"],  # 允许的操作：批准、拒绝、编辑
-                      "description": "邮件发送需要人工审核，请确认邮件内容是否正确",  # 自定义提示
+                      # 根据 LangChain 官方文档，HumanInTheLoopMiddleware定义的内置决策类型是固定的，分别是：
+                      # approve reject edit respond
+                      "description": "11111邮件发送需要人工审核，请确认邮件内容是否正确",  # 自定义提示
                   }
 
              },
@@ -53,6 +55,7 @@ def create_email_agent(q):
     print(rs)
     #模拟界面输入
     d = rs["__interrupt__"]
+    # '__interrupt__':是和'messages'平级的
     print(d)
     if d:
         print("请选择操作：")
@@ -62,15 +65,10 @@ def create_email_agent(q):
         choice = input("请输入你的选择：")
         if choice =="1":
             print("批准发送邮件")
-            data = agent.invoke(Command(
-                resume={
-                    "decisions": [
-                        {"type":"approve"}
-                    ]
-                }
-            ), config)
+            data = agent.invoke(Command(resume={"decisions": [{"type":"approve"}]}), config)
             print(data["messages"][-1].content)
         elif choice =="2":
+
             print("请输入编辑内容")
             to = input("请输入收件人邮箱：")
             subject = input("请输入标题")

@@ -6,7 +6,7 @@ from langchain_core.messages import AIMessage
 import redis
 
 #链接redis服务
-client = redis.StrictRedis(host='localhost', port=6379, db=0, password='root')
+client = redis.StrictRedis(host='localhost', port=6379, db=1, password='root')
 # 权限校验
 @before_agent
 def power_limit_middleware(state:AgentState,time:Runtime):
@@ -16,15 +16,26 @@ def power_limit_middleware(state:AgentState,time:Runtime):
     rs = mysql_tool.invoke({
         "sql":f"select department from user_info where user_id = '{user_id}'"
     })
+
+    # Runnable 对象 = 任何实现了 LangChain Runnable 接口的对象，通俗说就是"能被 .invoke() 统一调用的组件"。
+
     #类型转换
+    print(type(rs))
+    print(rs)
     data = ast.literal_eval(rs)
+    print(type(data))
+    print('22222222222222222222',data)
     #获取部门
     d = data[0][0]
     #假如这个智能体允许事业部访问
     if d != "事业部":
         raise Exception("您没有权限访问")
     # return {'你有权限哦！！！'}
-    return {}
+    return {1:1}
+    # LangGraph 规定，所有节点（包括中间件）执行完后，必须返回一个“字典（dict）
+    # 正常写的话这里应该是return {}或不写
+    # 返回的字典，其“键”（Key）必须是 AgentState 里已经定义过的字段名，并且值的类型也必须匹配
+    # 所以会看到[updates] {'power_limit_middleware.before_agent': None}
 
 
 # 统计 token消耗
@@ -48,7 +59,7 @@ def count_token_middleware(state:AgentState,time:Runtime):
 # 统计 token消耗
 @after_agent
 def count_token_redis_middleware(state: AgentState, time: Runtime):
-    print(state)
+    print('33333333333333',state)
     print(state["messages"])
     # 用户id
     user_id = time.execution_info.thread_id
@@ -57,7 +68,7 @@ def count_token_redis_middleware(state: AgentState, time: Runtime):
     v = client.hgetall(key)
     msg = state["messages"]
     if not v:
-        print('开始折腾Redis')
+        print('开始折腾空的Redis')
         input_tokens=0
         output_tokens=0
         total_tokens=0

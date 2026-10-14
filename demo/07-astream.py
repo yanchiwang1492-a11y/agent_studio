@@ -27,14 +27,41 @@ async def create_email_agent(q):
     async for c,m in agent.astream(human_msg,stream_mode="messages"):
         #print(m)
         if c.content:
+            # print(c.content)
             yield c.content
-            print('1111111111111',c.content, end="~")
+            # print('1',c.content,end="\n")
+            # print('1',c.content, end="~")
 
+
+# async def main():
+#     q = "请给1260171885@qq.com 发送一封邮件，通知他来上课"
+#     async for chunk in create_email_agent(q):
+#         print('2',chunk, end=",")  # 逐块打印，不换行
 
 async def main():
-    q = "请给1260171885@qq.com 发送一封邮件，通知他来上课"
-    async for chunk in create_email_agent(q):
-        print('2222222222222222222222222',chunk, end=",")  # 逐块打印，不换行
+    qs = [
+        "给 1260171885@qq.com 发邮件通知晚上吃面",
+        "给 123@qq.com 发邮件通知开会",
+        "给 nalan1655@qq.com 发邮件通知看演唱会",
+    ]
+    qs = [
+        '一句话介绍冰岛',
+        '一句话介绍不丹',
+        # '一句话介绍摩纳哥',
+        # '一句话介绍尼泊尔',
+        # '一句话介绍马达加斯加',
+        # '一句话介绍葡萄牙',
+        # '一句话介绍新西兰',
+        # '一句话介绍秘鲁',
+        # '一句话介绍芬兰',
+        # '一句话介绍柬埔寨',
+    ]
+    async def run_one(q):
+        async for chunk in create_email_agent(q):
+            print(chunk, end="")
+    await asyncio.gather(*[run_one(q) for q in qs])
+    # gather 内部把三个协程包装成 Task，交给事件循环。
+
 
 asyncio.run(main())
 

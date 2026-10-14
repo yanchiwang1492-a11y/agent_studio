@@ -1,6 +1,6 @@
 import redis
 
-client = redis.StrictRedis(host="localhost",port=6379,db=0, password='root')
+client = redis.StrictRedis(host="localhost",port=6379,db=1, password='root')
 print(client.ping)
 print(type(client.ping))
 if client.ping():

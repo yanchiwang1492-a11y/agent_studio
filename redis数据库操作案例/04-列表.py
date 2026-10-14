@@ -1,6 +1,6 @@
 import redis
 
-client = redis.StrictRedis(host="localhost", port=6379, db=0, password='root')
+client = redis.StrictRedis(host="localhost", port=6379, db=1, password='root')
 
 def test01():
     #左边添加
@@ -13,9 +13,9 @@ def test01():
 #存入
 def test02():
     #左边添加
-    left_data = client.rpush("user:2","a","b","c")
+    left_data = client.rpush("user2","a","b","c")
     #查询所有元素
-    data =client.lrange("user:2",0,-1)
+    data =client.lrange("user2",0,-1)
     print(data)
     print("保存成功")
 #获取
@@ -30,7 +30,7 @@ def test04():
     print(data)
 #截取
 def test05():
-    # client.rpush("user1", "r1", "r2", "r3")
+    client.rpush("user1", "r1", "r2", "r3")
     #截取
     rs = client.ltrim("user1",-2,-1)
     print(rs)

@@ -19,8 +19,7 @@ def create_email_agent(q):
             tools=tools,
             system_prompt=prompt,
             debug=True,  # 可选参数，一般用于调试，生成环境必须设置未false
-            middleware=[word_filter_middleware]
-            # middleware=[word_ping_middleware]
+            middleware=[word_filter_middleware,word_ping_middleware]
         )
         human_msg = {"messages": [HumanMessage(content=q)]}
         rs = agent.invoke(human_msg)
@@ -30,5 +29,5 @@ def create_email_agent(q):
         print(e)
 
 if __name__ =="__main__":
-        q="赌是什么"
+        q=("赌是什么")
         create_email_agent(q)

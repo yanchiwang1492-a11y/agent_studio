@@ -1,6 +1,6 @@
 import redis
 
-client = redis.StrictRedis(host="localhost", port=6379, db=0, password='root')
+client = redis.StrictRedis(host="localhost", port=6379, db=1, password='root')
 def test():
 
     #初始化自增变量
@@ -18,7 +18,7 @@ def test():
 
         # 获取值
         if client.get("name"):
-            name = client.get("name")
+            name = client.get("name").decode()
             age = client.get("age")
             sex = client.get("sex").decode()
             print(name, age, sex)
@@ -42,4 +42,4 @@ def test02():
         print(f"num={num}")
 
 if __name__ =="__main__":
-    test()
+    test02()

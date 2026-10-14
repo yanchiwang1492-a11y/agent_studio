@@ -5,7 +5,8 @@ def task(name, seconds):
     print(f"任务 {name} 开始，需要 {seconds} 秒")
     time.sleep(seconds)  # 模拟耗时操作（比如读文件、请求网络）
     print(f"任务 {name} 完成")
-    return f"结果-{name}"
+    return f"{name}"
+
 
 
 def main():
@@ -16,7 +17,7 @@ def main():
     result2 = task("B", 1)
     result3 = task("C", 3)
 
-    print(f"所有结果: {result1}, {result2}, {result3}")
+    print(f" {result1}, {result2}, {result3}全都都完成了")
     print(f"总耗时: {time.time() - start:.2f} 秒")
 
 

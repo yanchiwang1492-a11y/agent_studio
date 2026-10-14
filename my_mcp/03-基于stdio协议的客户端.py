@@ -4,7 +4,7 @@ from mcp.client.stdio import stdio_client
 from mcp import ClientSession, StdioServerParameters
 
 #定义客户端所在的目录
-dir =r"C:\Users\nalan\Desktop\Projects\agent-08-31\mcp服务应用程序开发"
+dir =r"C:\Users\nalan\Desktop\Projects\agent-08-31\my_mcp"
 #定义你客户端的启动程序
 p = "02-基于stdio协议的MCP服务端.py"
 #构建命令
@@ -14,9 +14,9 @@ c = StdioServerParameters(
     args=[p]#启动程序文件
 )
 #定义异步函数
-async  def test():
-    async  with stdio_client(c) as (read,write):
-        async  with ClientSession(read,write) as session:
+async def test():
+    async with stdio_client(c) as (read,write):
+        async with ClientSession(read,write) as session:
             #初始化
             await session.initialize()
             #获取工具列表

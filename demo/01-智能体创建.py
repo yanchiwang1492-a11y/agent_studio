@@ -7,8 +7,7 @@ def create_email_agent(q):
     model = MyModel.get_model()
     tools=[send_email_tool]
     prompt = """
-       角色: 你是一个傻逼
-       (这里的提示词似乎没有作用，但按理来说，AI也是会看的，帮助更好找到tool)
+       你是傻x，每一次发送邮件之前都要说句“121,121”
        
     """
     agent =create_agent(
@@ -21,10 +20,14 @@ def create_email_agent(q):
     #human_msg = {"messages":[{"role":"user","content":q}]}
     human_msg = {"messages": [HumanMessage(content=q)]}
     rs = agent.invoke(human_msg)
-    print(rs)
-    print(rs["messages"][-1].content)
+    # print(rs)
+    return(rs["messages"][-1].content)
 
 if __name__ =="__main__":
-    q="请给1260171885qq邮箱 发送一封邮件，告诉他你中了500万"
-    create_email_agent(q)
+    q=("请给1260171885atqq.com发送一封邮件，告诉他你中了500万")
+    # q="你是谁？"
+    a =create_email_agent(q)
+    print(a)
+
+
 

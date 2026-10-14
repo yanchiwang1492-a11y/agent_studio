@@ -10,11 +10,11 @@ load_dotenv()
 class WindowMemory:
 
     def __init__(self,session_id):
-        self.redis = redis.StrictRedis(host="localhost",port=6379,db=0,password='root')
+        self.redis = redis.StrictRedis(host="localhost",port=6379,db=3,password='root')
         #限制窗口记忆次数，生成环境是40次
         self.window_size = int(os.getenv("WINDOW_MEMORY_ROUNDS"))
         self.session_id = session_id
-        self.key = f"window_memory:{self.session_id}"
+        self.key = "window_memory_"+self.session_id
         #过期时间
         self.window_limit_time = int(os.getenv("WINDOW_MEMORY_TIME"))
 
@@ -36,22 +36,22 @@ class WindowMemory:
             return [json.loads(i) for i in data]
 
 if __name__ =="__main__":
-    w= WindowMemory("001")
+    w= WindowMemory("1")
     # 模拟人类消息添加
     w.save("user", "你好")
     # 模拟AI回复消息
     w.save("ai", "你好，我是AI助手")
     # 模拟人类消息添加
-    w.save("user", "你好1")
+    w.save("user", "你吃了吗")
     # 模拟AI回复消息
-    w.save("ai", "你好1，我是AI助手1")
+    w.save("ai", "我不吃东西")
     # 模拟人类消息添加
-    w.save("user", "你好2")
+    w.save("user", "真的吗")
     # 模拟AI回复消息
-    w.save("ai", "你好2，我是AI助手2")
-    w.save("user", "你好3")
+    w.save("ai", "骗你的，我要吃")
+    w.save("user", "吃啥")
     # 模拟AI回复消息
-    w.save("ai", "你好3，我是AI助手2")
+    w.save("ai", "吃狗屎")
     # 查询记忆
     rs = w.query()
     print(rs)

@@ -20,7 +20,10 @@ class MyModel:
             MyModel._model = ChatOpenAI(
                 model=os.getenv("MODEL_LINE_NAME"),
                 api_key=os.getenv("DASHSCOPE_API_KEY"),
-                streaming=True,#开启流式输出
+                # 如果你在代码里写了 base_url="..."，那就用代码里写的。
+                # 如果你代码里没写，它就会去环境里找 OPENAI_API_BASE 这个环境变量（我写在了.env里）。
+                # 如果都没找到，它则使用官方默认的 https://api.openai.com/v1。
+                # streaming=True,#开启流式输出，但这个好像可有可无
                 extra_body={
                     "enable_thinking": False
                 }
@@ -34,12 +37,13 @@ class MyModel:
             #创建模型
             MyModel._local_model = ChatOpenAI(
                 model= os.getenv("MODEL_LOCAL_NAME"),
-                api_key="a",
+                api_key="empty",
                 base_url=os.getenv("LOCAL_URL"),
-                streaming=True,#开启流式输出
+                # streaming=True,#开启流式输出
             )
         return MyModel._local_model
 if __name__ =="__main__":
-    model = MyModel.get_model()
-    rs = model.invoke("你好")
+    model = MyModel.get_local_model()
+    print("实际请求的 Base URL:", model.openai_api_base)
+    rs = model.invoke("你是谁")
     print(rs)

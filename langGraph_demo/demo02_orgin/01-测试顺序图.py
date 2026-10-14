@@ -1,0 +1,27 @@
+from langchain_core.messages import HumanMessage
+
+from langGraph_demo.demo02_orgin.graph.email_agent import email_agent
+
+import asyncio
+async def test1():
+    graph = email_agent()
+    input = {"messages": [HumanMessage(content="给张三发邮件，介绍一下最近成都演唱会的情况")]}
+    async for chunk, metadata in graph.astream(input, stream_mode="messages",):
+            yield chunk.content
+
+#画流程图
+def draw_graph():
+    agent = email_agent()
+    #画图
+    data = agent.get_graph().draw_mermaid_png()
+    #
+    with open("条件图02.png","wb") as f:
+        f.write(data)
+    print("条件图.png")
+
+if __name__=="__main__":
+    # draw_graph()
+    async def test():
+        async for rs in test1():
+            print(rs,end="")
+    asyncio.run(test())
